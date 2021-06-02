@@ -1,0 +1,12 @@
+# Gambas Project File 3.0
+Title=reemplazatexto
+Startup=Main
+Icon=replace.png
+Version=0.0.6
+Description="Reemplaza texto de un fichero dado."
+Authors="Julio Sanchez Berro"
+Arguments=[["'pruebas","documento","fodt.fodt'","**separador**","**finlinea**","cambios.txt"],["**separador**"],["**finlinea**"],["cambios.txt"]]
+CurrentArgumentList=["'pruebas","documento","fodt.fodt'","**separador**","**finlinea**","cambios.txt"]
+TabSize=2
+Language=en_US
+Packager=1

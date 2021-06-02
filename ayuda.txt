@@ -1,0 +1,34 @@
+**************************************
+           reemplazatexto
+Reemplaza Texto de un fichero plano
+**************************************
+
+Este programa se usa para:
+Crea un nuevo fichero donde se ha reemplazado varios textos por otros de un fichero plano dado.
+
+¿como lo hace?
+Usando parametros introducimos:
+1) primer parametro el nombre del fichero plano (.txt, .html, .fodt, .xml, .css, etc). Que será el fichero original. Por ejemplo se pueden crear plantilla donde haya etiquetas que sustituir.
+2) segundo parametro es la palabra que separa la información del fichero de datos (por ejemplo #palabra_separadora#)
+3) tercer parametro, que es nombre de fichero de datos (tambien en fichero plano), que tiene dos columnas separadas por la palabra separadora.
+4) el cuarto parametro, se usa para indicar el fin del texto a reemplazar. Esto tiene la ventaja de admitir varias lineas con retorno de carro a reemplazar.
+5) El programa se encarga de crear una nueva versión renombrada del fichero original como "_new", donde ha cambiado del fichero original las palabras de la 1º columna por la 2º columna del fichero de datos.
+
+Ejemplo de uso:
+
+$reemplazatexto plantilla.fodt **separador** **finlinea*** cambios.txt
+
+Siendo el fichero "cambios.txt":
+tag1**separador**Julio**finlinea***
+tag2**separador**Sanchez**finlinea***
+tag3**separador**Berro**finlinea***
+
+Generará un fichero un plantilla_new.fodt con los cambios realizados
+
+
+
+Autor
+Julio Sanchez Berro
+2021
+
+Realizado en Gambas3

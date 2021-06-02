@@ -1,0 +1,12 @@
+Titulo 1**separador**Pais**finlinea**
+Titulo 2**separador**Poblacion**finlinea**
+Te11**separador**España**finlinea**
+Te12**separador**2580**finlinea**
+Te21**separador**Inglatera**finlinea**
+Te22**separador**1002**finlinea**
+Te31**separador**Francia**finlinea**
+Te32**separador**85.58**finlinea**
+Te41**separador**USA**finlinea**
+Te42**separador**5829758**finlinea**
+Te61**separador**ALEMANIA**finlinea**
+Te62**separador**83745**finlinea**

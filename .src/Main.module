@@ -1,0 +1,92 @@
+' Gambas module file
+
+'
+' ejemplo de uso
+'$reemplazatexto plantilla.fodt **separador** **finlinea*** cambios.txt
+Public contenidoOriginal As String
+Public ArrayLineasCambios As String[]
+Public cambios As String[]
+
+Public nombreficheroOriginal As String
+Public separadorColumna As String
+Public separadorLinea As String
+Public nombreficheroCambios As String
+Public contenidoFicheroDestino As String
+
+Public nombrefinal As String
+Public extension As String
+
+Public contenidoCambios As String
+
+Public Sub Main()
+
+  Dim ltmp As String
+
+  ' ' If Application.Args.Count = 1 Then
+  ' '   '******************************
+  ' '   'mostrar ayuda
+  ' '   '******************************
+  ' '   comun.ayuda()
+  ' '   Quit
+  ' '
+  ' ' Endif
+  ' '
+  ' ' If Application.Args.count <> 5 Then
+  ' '   'falla el numero de parametros
+  ' '   comun.ayuda()
+  ' '   Print
+  ' '   Print "********************************************"
+  ' '   Print "Error: parece que faltan o sobran argumentos"
+  ' '   Print "********************************************"
+  ' '   Quit
+  ' ' Endif
+
+  'empiezo a trabajar:
+
+  nombreficheroOriginal = "pruebas documento fodt.fodt" 'Application.Args[1]
+  separadorColumna = "**separador**" ' Application.Args[2]
+  separadorLinea = "**finlinea**" ' Application.Args[3]
+  nombreficheroCambios = "cambios.txt" ' Application.Args[4]
+
+  If Exist(nombreficheroOriginal) Then
+    nombreficheroOriginal = Application.Path & "/" & nombreficheroOriginal
+  Endif
+
+  If Exist(nombreficheroCambios) Then
+    nombreficheroCambios = Application.Path & "/" & nombreficheroCambios
+  Endif
+
+  Print "Fichero Origen:", nombreficheroOriginal
+  Print "Fichero de Cambios:", nombreficheroCambios
+
+  'lectura del fichero original, que seria la plantilla
+  contenidoOriginal = File.Load(nombreficheroOriginal)
+  contenidoFicheroDestino = contenidoOriginal
+
+  'lectura del fichero que contiene los cambios a realizar:
+  contenidoCambios = File.Load(nombreficheroCambios)
+
+  ArrayLineasCambios = comun.SplitPalabra(contenidoCambios, separadorLinea & gb.NewLine) 'le añado el retorno de carro
+
+  For Each ltmp In ArrayLineasCambios
+    cambios = comun.SplitPalabra(ltmp, separadorColumna)
+    If cambios.Count = 2 Then
+      'solo ejecuto esto si hay 2 columnas
+      contenidoFicheroDestino = Replace$(contenidoFicheroDestino, cambios[0], cambios[1])
+    Endif
+  Next
+
+  'se han realizado todos los cambios...
+  'guardo los cambios en un nuevo fichero
+  extension = File.Ext(nombreficheroOriginal)
+
+  nombrefinal = Replace$(nombreficheroOriginal, "." & extension, "_new." & extension)
+
+  File.Save(nombrefinal, contenidoFicheroDestino)
+  Print
+  Print "*******************************************"
+  Print "Ok, reemplazo realizado, creado fichero:"
+  Print nombrefinal
+  Print "*******************************************"
+
+End

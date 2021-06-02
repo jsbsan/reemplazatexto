@@ -1,0 +1,43 @@
+' Gambas module file
+
+Public Sub ayuda()
+
+  Print File.Load("ayuda.txt")
+
+End
+
+Public Function splitpalabra(texto As String, separadortexto As String) As String[]
+
+  Dim buscar As Integer
+  Dim encontrado As Integer
+  Dim restocadena As String
+  Dim trozo As String
+  Dim arraytexto As String[] = []
+
+  buscar = String.InStr(texto, separadortexto)
+
+  If buscar = 0 Then Return [texto]
+
+  If buscar <> 0 Then
+    trozo = String.Mid(texto, 1, buscar - 1)
+    arraytexto.Add(trozo)
+
+    restocadena = String.Mid(texto, buscar + String.len(separadortexto))
+    encontrado = buscar
+
+    While encontrado > 0
+      encontrado = String.InStr(restocadena, separadortexto)
+      If encontrado = 0 Then
+        arraytexto.Add(restocadena)
+        Break
+      Else
+        trozo = String.Mid(restocadena, 1, encontrado - 1)
+        Arraytexto.Add(trozo)
+        restocadena = String.Mid(restocadena, encontrado + String.Len(separadortexto))
+      Endif
+
+    Wend
+  Endif
+  Return Arraytexto
+
+End
